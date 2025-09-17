@@ -1,0 +1,717 @@
+{
+  "name": "Optimized Factory",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "content-quantum-v6",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "760e946b-0d6d-477d-82da-1bd0ba73d431",
+      "name": "Webhook Entry",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        208
+      ],
+      "webhookId": "e14e1d7b-ece6-48d4-a3da-5af2e8a79aa4"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.body?.externalArticleId }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "fc037a31-0f8c-4c87-96fd-5edb7f97acf4",
+      "name": "Load External Article",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -560,
+        -336
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "y3TnVWBwkeWBly9a",
+          "name": "Google Drive account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Brand Base",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "34e1d783-5117-4e49-8058-903cece1d33c",
+      "name": "Load Brand Base",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        -176
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "FAQ (Main)",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "6df6c39b-e93d-4816-92c7-790247d7263c",
+      "name": "Load FAQs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        16
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Interacciones",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "09c1b49b-4fde-4a44-b264-5776626e033a",
+      "name": "Load Interactions",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        208
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "ALL BLOGS",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "02a97e9a-fe47-49a5-b54b-5be53d8637e2",
+      "name": "Load All Blogs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "ALL VIDEOS",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "b3c60df8-be63-4a6c-afd9-9a3cf48b52d7",
+      "name": "Load All Videos",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        576
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{$vars.BRAND_SHEET_ID || '1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs'}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 538320278,
+          "mode": "list",
+          "cachedResultName": "BLOG/VIDEO Equivalence",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TTGoSeboq_u0NFE8kLleEjm4UE7Wp5CqF1JxLNjWnzs/edit#gid=538320278"
+        },
+        "options": {}
+      },
+      "id": "da9ab0e0-3f82-4439-b33b-888dddadfb7d",
+      "name": "Load Blog/Video Map",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -560,
+        768
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2OBZEw0Ga2b8bp9f",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================\n// QUANTUM DATA ORCHESTRATOR v6.0 - CON ANÁLISIS DE ARTÍCULO EXTERNO\n// ========================================================\n\nclass QuantumOrchestratorV6 {\n  constructor() {\n    this.startTime = Date.now();\n    this.currentYear = 2025;\n    this.errors = [];\n    this.warnings = [];\n  }\n\n  // Fix encoding\n  fixEncoding(text) {\n    if (!text) return '';\n    return String(text)\n      .replace(/Ã±/g, 'ñ').replace(/Ã'/g, 'Ñ').replace(/Ã¡/g, 'á')\n      .replace(/Ã©/g, 'é').replace(/Ã­/g, 'í').replace(/Ã³/g, 'ó')\n      .replace(/Ãº/g, 'ú').replace(/Ã/g, 'Á').replace(/Ã‰/g, 'É')\n      .replace(/Ã/g, 'Í').replace(/Ã\"/g, 'Ó').replace(/Ãš/g, 'Ú')\n      .replace(/Â¿/g, '¿').replace(/Â¡/g, '¡');\n  }\n\n  // Analizar artículo externo para extraer insights\n  analyzeExternalArticle() {\n    try {\n      const externalData = $items('Load External Article')[0]?.json;\n      if (!externalData || !externalData.data) return null;\n      \n      const content = this.fixEncoding(externalData.data);\n      \n      // Extraer elementos clave del artículo\n      const analysis = {\n        hasContent: true,\n        length: content.length,\n        \n        // Detectar problemas encontrados en los comentarios\n        issues: {\n          outdatedSources: [],\n          fictionalExamples: [],\n          externalRecommendations: [],\n          inappropriateTerms: [],\n          inconsistencies: []\n        },\n        \n        // Buscar fechas outdated (antes de 2025)\n        checkOutdatedDates: () => {\n          const datePattern = /\\b(202[0-4])\\b/g;\n          const matches = content.match(datePattern) || [];\n          matches.forEach(date => {\n            if (parseInt(date) < 2025) {\n              analysis.issues.outdatedSources.push({\n                found: date,\n                correction: '2025',\n                context: content.substring(content.indexOf(date) - 50, content.indexOf(date) + 50)\n              });\n            }\n          });\n        },\n        \n        // Detectar ejemplos no ficticios\n        checkFictionalExamples: () => {\n          const namePattern = /(?:María|Carlos|José|Ana|Carmen)(?!.*imaginemos)(?!.*ficticio)/gi;\n          const matches = content.match(namePattern) || [];\n          matches.forEach(name => {\n            analysis.issues.fictionalExamples.push({\n              found: name,\n              correction: `Imaginemos a ${name}`,\n              note: 'Debe aclarar que es un ejemplo ficticio'\n            });\n          });\n        },\n        \n        // Detectar recomendaciones externas\n        checkExternalRecommendations: () => {\n          const competitors = [\n            'Vanguard', 'Fidelity', 'Charles Schwab', 'Betterment', \n            'Wealthfront', 'Fundrise', 'RealtyMogul'\n          ];\n          competitors.forEach(comp => {\n            if (content.includes(comp)) {\n              analysis.issues.externalRecommendations.push({\n                found: comp,\n                correction: 'Herramientas de Finhabits',\n                note: 'Solo recomendar herramientas internas'\n              });\n            }\n          });\n        },\n        \n        // Detectar términos inapropiados\n        checkInappropriateTerms: () => {\n          const inappropriate = ['indocumentado', 'ilegal', 'sin papeles'];\n          inappropriate.forEach(term => {\n            if (content.toLowerCase().includes(term)) {\n              analysis.issues.inappropriateTerms.push({\n                found: term,\n                correction: 'personas que necesitan ITIN o SSN',\n                note: 'Usar lenguaje inclusivo y profesional'\n              });\n            }\n          });\n        },\n        \n        // Extraer estructura del artículo\n        extractStructure: () => {\n          return {\n            title: (content.match(/^#\\s+(.+)/m) || ['', ''])[1],\n            h2Sections: (content.match(/^##\\s+.+/gm) || []).map(h => h.replace(/^##\\s+/, '')),\n            h3Sections: (content.match(/^###\\s+.+/gm) || []).map(h => h.replace(/^###\\s+/, '')),\n            faqs: (content.match(/\\*\\*¿[^?]+\\?\\*\\*/g) || []),\n            hasDisclaimer: content.includes('asesoría financiera'),\n            wordCount: content.split(/\\s+/).length\n          };\n        },\n        \n        // Extraer contenido útil para reutilizar\n        extractUsefulContent: () => {\n          return {\n            goodExamples: [],\n            dataPoints: [],\n            structure: analysis.extractStructure(),\n            tone: 'educational',\n            style: 'clear and accessible'\n          };\n        }\n      };\n      \n      // Ejecutar todos los análisis\n      analysis.checkOutdatedDates();\n      analysis.checkFictionalExamples();\n      analysis.checkExternalRecommendations();\n      analysis.checkInappropriateTerms();\n      const useful = analysis.extractUsefulContent();\n      \n      return {\n        hasExternalArticle: true,\n        content: content.substring(0, 5000), // Primeros 5000 chars como contexto\n        issues: analysis.issues,\n        useful: useful,\n        totalIssuesFound: \n          analysis.issues.outdatedSources.length +\n          analysis.issues.fictionalExamples.length +\n          analysis.issues.externalRecommendations.length +\n          analysis.issues.inappropriateTerms.length\n      };\n      \n    } catch (e) {\n      console.log('No external article provided or error loading:', e.message);\n      return null;\n    }\n  }\n\n  // Procesar datos principales\n  process() {\n    try {\n      // Analizar artículo externo si existe\n      const externalAnalysis = this.analyzeExternalArticle();\n      \n      // Capturar todos los datos\n      const getData = (nodeName) => {\n        try {\n          return $items(nodeName).map(item => item.json);\n        } catch (e) {\n          this.warnings.push(`No data from ${nodeName}`);\n          return [];\n        }\n      };\n\n      const brandBase = getData('Load Brand Base');\n      const faqs = getData('Load FAQs');\n      const interactions = getData('Load Interactions');\n      const blogs = getData('Load All Blogs');\n      const videos = getData('Load All Videos');\n      const videoMap = getData('Load Blog/Video Map');\n\n      // Procesar intake\n      const webhookData = $items('Webhook Entry')[0].json;\n      const rawIntake = webhookData.body?.intake || webhookData.body || {};\n\n      const intake = {\n        topic: this.fixEncoding(rawIntake.topic || ''),\n        language: (rawIntake.language || 'ES').toUpperCase(),\n        centralTheme: this.fixEncoding(rawIntake.central_theme || ''),\n        primaryKw: this.fixEncoding(rawIntake.primary_kw || ''),\n        secondaryKws: (rawIntake.secondary_kws || []).map(k => this.fixEncoding(k)),\n        description: this.fixEncoding(rawIntake.description || ''),\n        suggestedTitle: this.fixEncoding(rawIntake.suggested_title || ''),\n        suggestedSlug: (rawIntake.suggested_slug || '').toLowerCase().replace(/[^a-z0-9]+/g, '-'),\n        internalSources: rawIntake.internal_sources || [],\n        wordCount: rawIntake.word_count || 3000,\n        useExternalArticle: Boolean(rawIntake.externalArticleId)\n      };\n\n      // Procesar Brand Data con validaciones\n      const brandData = {};\n      brandBase.forEach(row => {\n        const key = (row.key || '').toLowerCase().replace(/\\s+/g, '_');\n        const value = this.fixEncoding(row.value || '');\n        if (key && value) brandData[key] = value;\n      });\n\n      // Análisis semántico mejorado\n      const keywordBag = [\n        intake.topic,\n        intake.centralTheme,\n        intake.primaryKw,\n        ...intake.secondaryKws\n      ].filter(Boolean);\n\n      // Score de relevancia\n      const scoreRelevance = (text, keywords) => {\n        const textLower = String(text || '').toLowerCase();\n        let score = 0;\n        keywords.forEach(kw => {\n          const kwLower = String(kw || '').toLowerCase();\n          if (textLower.includes(kwLower)) score += 10;\n          const words = kwLower.split(/\\s+/);\n          words.forEach(word => {\n            if (word.length > 3 && textLower.includes(word)) score += 3;\n          });\n        });\n        return score;\n      };\n\n      // Analizar FAQs\n      const analyzedFaqs = faqs.map(faq => ({\n        ...faq,\n        relevanceScore: scoreRelevance(\n          `${faq.theme || ''} ${faq.question || ''} ${faq.answer || ''}`,\n          keywordBag\n        )\n      })).sort((a, b) => b.relevanceScore - a.relevanceScore);\n\n      // Analizar interacciones\n      const analyzedInteractions = interactions.map(inter => ({\n        ...inter,\n        relevanceScore: scoreRelevance(\n          `${inter.q || ''} ${inter.a || ''}`,\n          keywordBag\n        )\n      })).sort((a, b) => b.relevanceScore - a.relevanceScore);\n\n      // Detectar duplicados\n      const existingSlugs = blogs.map(b => (b.slug || '').toLowerCase());\n      const existingTitles = blogs.map(b => (b.title || '').toLowerCase());\n      \n      const duplicates = {\n        exactSlug: existingSlugs.includes(intake.suggestedSlug),\n        exactTitle: existingTitles.includes(intake.suggestedTitle.toLowerCase())\n      };\n\n      // Video matching\n      const findBestVideo = () => {\n        const mapEntry = videoMap.find(m => \n          m.blog_slug === intake.suggestedSlug ||\n          m.blog_title === intake.suggestedTitle\n        );\n        \n        if (mapEntry) {\n          return videos.find(v => v.id === mapEntry.video_id);\n        }\n        \n        const scoredVideos = videos.map(video => ({\n          ...video,\n          relevanceScore: scoreRelevance(\n            `${video.title || ''} ${video.description || ''}`,\n            keywordBag\n          )\n        })).sort((a, b) => b.relevanceScore - a.relevanceScore);\n        \n        return scoredVideos[0]?.relevanceScore > 30 ? scoredVideos[0] : null;\n      };\n\n      const bestVideo = findBestVideo();\n\n      // Blogs relacionados\n      const analyzedBlogs = blogs.map(blog => ({\n        ...blog,\n        relevanceScore: scoreRelevance(\n          `${blog.title || ''} ${blog.slug || ''}`,\n          keywordBag\n        )\n      })).filter(b => b.relevanceScore > 0)\n        .sort((a, b) => b.relevanceScore - a.relevanceScore);\n\n      // Construir contexto masivo con reglas actualizadas\n      const brandContext = {\n        identity: {\n          mission: brandData.mission || '',\n          vision: brandData.vision || '',\n          elevator: brandData.elevator || '',\n          values: (brandData.values || '').split(',').map(v => v.trim())\n        },\n        \n        voice: {\n          register: brandData.voice_register || 'Cercano, educativo y profesional',\n          tone: brandData.voice_tone || 'Empático y claro',\n          style: brandData.voice_style || 'Directo con ejemplos prácticos',\n          dos: (brandData.voice_dos || '').split(';').map(d => d.trim()),\n          donts: (brandData.voice_donts || '').split(';').map(d => d.trim())\n        },\n        \n        rules: {\n          bannedTerms: ['indocumentado', 'ilegal', 'sin papeles', 'garantizado', 'sin riesgo'],\n          requiredDisclaimer: 'Este contenido es educativo y no constituye asesoría financiera personalizada.',\n          yearRestriction: 'SOLO usar datos de 2025 en adelante',\n          exampleRule: 'SIEMPRE aclarar que los ejemplos son ficticios usando \"Imaginemos a...\"',\n          internalOnly: 'SOLO recomendar herramientas de Finhabits, nunca competidores',\n          linkingRule: 'SIEMPRE enlazar a guías internas de Finhabits'\n        },\n        \n        seo: {\n          pillars: ['/es/ahorro', '/es/credito', '/es/inversion', '/es/presupuesto', '/es/emma'],\n          internalTools: ['Emma', 'Calculadora de jubilación', 'Herramientas Finhabits'],\n          youtubeChannel: 'Canal de YouTube de Finhabits',\n          app: 'App de Finhabits'\n        },\n        \n        content: {\n          topFaqs: analyzedFaqs.slice(0, 20),\n          topInteractions: analyzedInteractions.slice(0, 20),\n          relatedBlogs: analyzedBlogs.slice(0, 15),\n          suggestedVideo: bestVideo,\n          duplicateWarning: duplicates\n        },\n        \n        externalArticleAnalysis: externalAnalysis,\n        \n        corrections: externalAnalysis ? {\n          mustFix: externalAnalysis.issues,\n          totalCorrectionsNeeded: externalAnalysis.totalIssuesFound\n        } : null\n      };\n\n      return [{\n        json: {\n          success: true,\n          intake,\n          brandContext,\n          rawData: {\n            faqs: analyzedFaqs,\n            interactions: analyzedInteractions,\n            blogs: analyzedBlogs,\n            videos\n          },\n          metadata: {\n            timestamp: new Date().toISOString(),\n            version: '6.0',\n            hasExternalReference: Boolean(externalAnalysis),\n            issuesDetected: externalAnalysis?.totalIssuesFound || 0,\n            warnings: this.warnings\n          }\n        }\n      }];\n      \n    } catch (error) {\n      return [{\n        json: {\n          success: false,\n          error: error.message,\n          stack: error.stack\n        }\n      }];\n    }\n  }\n}\n\nconst orchestrator = new QuantumOrchestratorV6();\nreturn orchestrator.process();"
+      },
+      "id": "b8806c79-413e-46ef-a4df-19cc01a7b55e",
+      "name": "Quantum Orchestrator v6",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================\n// ULTRA MEGA PROMPT BUILDER v6.0 - CON TODAS LAS CORRECCIONES\n// ========================================================\n\nconst data = $json;\nconst intake = data.intake;\nconst brand = data.brandContext;\nconst external = brand.externalArticleAnalysis;\n\nconst buildUltraPrompt = () => {\n  \n  // System prompt con TODAS las reglas actualizadas\n  const systemPrompt = `Eres el arquitecto principal de contenido de Finhabits, con expertise absoluto en contenido financiero para latinos en Estados Unidos.\n\n🚨 REGLAS CRÍTICAS E INQUEBRANTABLES 🚨\n\n1. **FECHAS Y DATOS**: SOLO usa información de 2025 en adelante. Si mencionas datos anteriores, el contenido será rechazado.\n\n2. **EJEMPLOS FICTICIOS**: SIEMPRE que uses nombres de personas, DEBES anteceder con \"Imaginemos a...\" o \"Consideremos el caso ficticio de...\". \n   - ❌ INCORRECTO: \"María ahorra $500 mensuales\"\n   - ✅ CORRECTO: \"Imaginemos a María, quien ahorra $500 mensuales\"\n\n3. **HERRAMIENTAS INTERNAS ÚNICAMENTE**: \n   - SOLO recomendar: Emma, Calculadora de Finhabits, App de Finhabits, Canal de YouTube de Finhabits\n   - NUNCA mencionar: Vanguard, Fidelity, Schwab, Betterment, o cualquier competidor\n\n4. **LENGUAJE INCLUSIVO**:\n   - NUNCA usar: \"indocumentado\", \"ilegal\", \"sin papeles\"\n   - SIEMPRE usar: \"personas con ITIN\", \"quienes necesitan documentación\", \"con número de identificación fiscal\"\n\n5. **ENLACES INTERNOS OBLIGATORIOS**:\n   - Mínimo 15 enlaces a contenido interno de Finhabits\n   - Priorizar: ${brand.seo.pillars.join(', ')}\n\n${external && external.totalIssuesFound > 0 ? `\n🔴 CORRECCIONES OBLIGATORIAS DEL ARTÍCULO DE REFERENCIA:\n\n${external.issues.outdatedSources.length > 0 ? `\nFECHAS PARA ACTUALIZAR:\n${external.issues.outdatedSources.map(i => `- Cambiar ${i.found} por 2025 o posterior`).join('\\n')}\n` : ''}\n\n${external.issues.fictionalExamples.length > 0 ? `\nEJEMPLOS PARA CLARIFICAR COMO FICTICIOS:\n${external.issues.fictionalExamples.map(i => `- ${i.found} → \"Imaginemos a ${i.found}\"`).join('\\n')}\n` : ''}\n\n${external.issues.externalRecommendations.length > 0 ? `\nCOMPETIDORES PARA REEMPLAZAR:\n${external.issues.externalRecommendations.map(i => `- ${i.found} → Herramientas de Finhabits`).join('\\n')}\n` : ''}\n\n${external.issues.inappropriateTerms.length > 0 ? `\nTÉRMINOS PARA CORREGIR:\n${external.issues.inappropriateTerms.map(i => `- \"${i.found}\" → \"${i.correction}\"`).join('\\n')}\n` : ''}\n` : ''}\n\n========================================\nIDENTIDAD DE MARCA\n========================================\n\nMISIÓN: ${brand.identity.mission}\nVISIÓN: ${brand.identity.vision}\nPROPUESTA: ${brand.identity.elevator}\n\nVALORES (aplicar en cada sección):\n${brand.identity.values.map((v, i) => `${i+1}. ${v}`).join('\\n')}\n\n========================================\nVOZ Y TONO\n========================================\n\nREGISTRO: ${brand.voice.register}\nTONO: ${brand.voice.tone}\nESTILO: ${brand.voice.style}\n\nSIEMPRE HACER:\n${brand.voice.dos.map((d, i) => `✅ ${d}`).join('\\n')}\n\nNUNCA HACER:\n${brand.voice.donts.map((d, i) => `❌ ${d}`).join('\\n')}\n\n========================================\nCONOCIMIENTO DE MARCA\n========================================\n\nFAQs RELEVANTES (incorporar naturalmente):\n${brand.content.topFaqs.slice(0, 15).map((faq, i) => `\n${i+1}. [Score: ${faq.relevanceScore}]\nPREGUNTA: ${faq.question}\nRESPUESTA: ${faq.answer || ''}\n`).join('')}\n\nINTERACCIONES (mostrar nuestra voz):\n${brand.content.topInteractions.slice(0, 15).map((inter, i) => `\n${i+1}. [Score: ${inter.relevanceScore}]\nUSUARIO: \"${inter.q || inter.question}\"\nFINHABITS: \"${inter.a || inter.answer}\"\n`).join('')}\n\n========================================\nCONTENIDO RELACIONADO PARA ENLAZAR\n========================================\n\n${brand.content.duplicateWarning.exactSlug || brand.content.duplicateWarning.exactTitle ? \n'⚠️ ALERTA DUPLICACIÓN - CAMBIAR TÍTULO Y SLUG ⚠️\\n' : ''}\n\nBLOGS PARA ENLAZAR (OBLIGATORIO mínimo 10):\n${brand.content.relatedBlogs.slice(0, 15).map((blog, i) => `\n${i+1}. ${blog.title}\n   URL: /es${blog.slug}\n   Relevancia: ${blog.relevanceScore}\n`).join('')}\n\n${brand.content.suggestedVideo ? `\nVIDEO PARA EMBED:\nTítulo: ${brand.content.suggestedVideo.title}\nID: ${brand.content.suggestedVideo.id}\n` : ''}\n\n========================================\nESTRUCTURA MANDATORIA\n========================================\n\n1. TÍTULO (55-60 chars)\n   - KW principal al inicio\n   - Año 2025 o posterior si aplica\n   - Sin términos prohibidos\n\n2. META DESCRIPCIÓN (150-160 chars)\n   - Mencionar Finhabits\n   - Beneficio claro\n   - Call to action\n\n3. INTRODUCCIÓN (200-250 palabras)\n   - Hook con estadística 2025+\n   - Mencionar Emma o herramientas Finhabits\n   - Aclarar ejemplos ficticios desde el inicio\n\n4. DESARROLLO (${intake.wordCount} palabras mínimo)\n   - Cada H2 debe tener 300-400 palabras\n   - Ejemplos SIEMPRE con \"Imaginemos a...\"\n   - Datos SOLO de 2025 en adelante\n   - Enlaces a herramientas internas\n\n5. SECCIÓN HERRAMIENTAS FINHABITS\n   - Emma para análisis financiero\n   - Calculadora de jubilación\n   - App móvil\n   - Canal YouTube\n\n6. FAQ (7-10 preguntas)\n   - NO usar \"indocumentado\"\n   - Preguntar \"¿Qué documentos necesito?\"\n   - Mencionar ITIN y SSN\n\n7. RECURSOS (SOLO INTERNOS)\n   - Enlaces a guías de Finhabits\n   - Herramientas propias\n   - Canal YouTube\n   - App móvil\n\n8. DISCLAIMER OBLIGATORIO\n   \"${brand.rules.requiredDisclaimer}\"\n\n========================================\nVALIDACIONES FINALES\n========================================\n\n✓ Todos los datos son 2025 o posteriores\n✓ Todos los ejemplos son claramente ficticios\n✓ Solo herramientas de Finhabits mencionadas\n✓ Lenguaje inclusivo y profesional\n✓ Mínimo 15 enlaces internos\n✓ Consistencia con guías existentes\n✓ Promoción de canales propios`;\n\n  const userPrompt = `GENERA EL ARTÍCULO CON LAS SIGUIENTES ESPECIFICACIONES:\n\nTEMA: ${intake.topic}\nPALABRA CLAVE PRINCIPAL: ${intake.primaryKw}\nPALABRAS CLAVE SECUNDARIAS: ${intake.secondaryKws.join(', ')}\nDESCRIPCIÓN: ${intake.description}\nPALABRAS OBJETIVO: ${intake.wordCount}\n\n${external ? `\nUSA ESTE ARTÍCULO COMO REFERENCIA PERO CORRIGE TODOS SUS ERRORES:\n- Actualiza todas las fechas a 2025 o posterior\n- Aclara que todos los ejemplos son ficticios\n- Reemplaza herramientas externas por las de Finhabits\n- Corrige lenguaje inapropiado\n\\n${external.content.substring(0, 3000)}...\\n\nERRORES DETECTADOS QUE DEBES CORREGIR: ${external.totalIssuesFound}\n` : ''}\n\nRECUERDA:\n1. SOLO datos 2025+\n2. Ejemplos con \"Imaginemos a...\"\n3. SOLO herramientas Finhabits\n4. Lenguaje inclusivo\n5. 15+ enlaces internos\n\nGENERA EL ARTÍCULO AHORA EN MARKDOWN PERFECTO.`;\n\n  return { systemPrompt, userPrompt };\n};\n\nconst prompts = buildUltraPrompt();\n\nreturn [{\n  json: {\n    ...data,\n    prompts: {\n      system: prompts.systemPrompt,\n      user: prompts.userPrompt,\n      totalLength: prompts.systemPrompt.length + prompts.userPrompt.length,\n      corrections: data.brandContext.corrections,\n      validationRules: {\n        mustUse2025Data: true,\n        mustClarifyFictional: true,\n        mustUseInternalTools: true,\n        mustAvoidBannedTerms: true,\n        mustLinkInternal: true\n      }\n    }\n  }\n}];"
+      },
+      "id": "5965cc82-e1e9-402a-b63e-6fdb9bc07f3b",
+      "name": "Ultra Prompt Builder v6",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "GPT-5"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.prompts.system }}",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.prompts.user }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 1
+        }
+      },
+      "id": "7610ab6f-ee50-4c64-a754-41b35ea8af61",
+      "name": "OpenAI Writer",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        176,
+        32
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "cOZeMwDBGEhrEpxy",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "claude-sonnet-4-20250514"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.prompts.user }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.95
+        }
+      },
+      "id": "2546db9f-8deb-4a97-97da-a6497f95b7e7",
+      "name": "Anthropic Writer",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        176,
+        384
+      ],
+      "credentials": {
+        "anthropicApi": {
+          "id": "itYBJ05HDtpuv6eO",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================\n// VALIDATOR PROCESSOR - ANALIZA OUTPUTS Y PREPARA CORRECCIONES\n// ========================================================\n\nclass ValidatorProcessor {\n  constructor() {\n    this.validations = {};\n    this.corrections = [];\n  }\n\n  getContent(source) {\n    try {\n      const data = $items(source)[0].json;\n      return data.output || data.text || data.content || '';\n    } catch (e) {\n      console.log(`No content from ${source}`);\n      return '';\n    }\n  }\n\n  validateContent(content, rules) {\n    const validations = {\n      // Validaciones críticas de las reglas\n      has2025Data: {\n        check: () => {\n          const oldDates = content.match(/\\b(202[0-4])\\b/g) || [];\n          return oldDates.length === 0;\n        },\n        score: 0,\n        issue: 'Contiene fechas anteriores a 2025',\n        correction: 'Actualizar todas las fechas a 2025 o posterior'\n      },\n      \n      hasFictionalExamples: {\n        check: () => {\n          const names = ['María', 'Carlos', 'José', 'Ana', 'Carmen'];\n          for (const name of names) {\n            const pattern = new RegExp(`${name}(?!.*imaginemos)(?!.*ficticio)`, 'gi');\n            if (pattern.test(content)) return false;\n          }\n          return true;\n        },\n        score: 0,\n        issue: 'Ejemplos no clarificados como ficticios',\n        correction: 'Agregar \"Imaginemos a\" antes de cada nombre de ejemplo'\n      },\n      \n      noExternalTools: {\n        check: () => {\n          const competitors = ['Vanguard', 'Fidelity', 'Schwab', 'Betterment', 'Wealthfront'];\n          return !competitors.some(c => content.includes(c));\n        },\n        score: 0,\n        issue: 'Menciona herramientas de competidores',\n        correction: 'Reemplazar con herramientas de Finhabits (Emma, App, Calculadora)'\n      },\n      \n      appropriateLanguage: {\n        check: () => {\n          const banned = ['indocumentado', 'ilegal', 'sin papeles'];\n          return !banned.some(b => content.toLowerCase().includes(b));\n        },\n        score: 0,\n        issue: 'Usa lenguaje inapropiado',\n        correction: 'Cambiar a \"personas con ITIN\" o \"quienes necesitan documentación\"'\n      },\n      \n      hasInternalLinks: {\n        check: () => {\n          const links = content.match(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g) || [];\n          const internalLinks = links.filter(l => l.includes('/es/'));\n          return internalLinks.length >= 15;\n        },\n        score: 0,\n        issue: 'Menos de 15 enlaces internos',\n        correction: 'Agregar más enlaces a contenido de Finhabits'\n      },\n      \n      promotesFinhabits: {\n        check: () => {\n          return content.includes('Emma') && \n                 content.includes('Finhabits') &&\n                 (content.includes('app') || content.includes('App'));\n        },\n        score: 0,\n        issue: 'No promociona suficientemente herramientas Finhabits',\n        correction: 'Agregar sección sobre Emma, App y herramientas de Finhabits'\n      },\n      \n      hasDisclaimer: {\n        check: () => content.includes('asesoría financiera'),\n        score: 0,\n        issue: 'Falta disclaimer legal',\n        correction: 'Agregar disclaimer completo al final'\n      },\n      \n      hasProperStructure: {\n        check: () => {\n          return content.includes('#') && \n                 content.includes('##') &&\n                 content.includes('FAQ') &&\n                 content.split(/\\s+/).length >= rules.wordCount;\n        },\n        score: 0,\n        issue: 'Estructura incompleta',\n        correction: 'Asegurar H1, H2s, FAQ y longitud mínima'\n      }\n    };\n\n    // Ejecutar validaciones\n    Object.keys(validations).forEach(key => {\n      validations[key].score = validations[key].check() ? 100 : 0;\n      if (validations[key].score === 0) {\n        this.corrections.push({\n          type: key,\n          issue: validations[key].issue,\n          correction: validations[key].correction,\n          critical: ['has2025Data', 'hasFictionalExamples', 'appropriateLanguage'].includes(key)\n        });\n      }\n    });\n\n    const totalScore = Object.values(validations).reduce((sum, v) => sum + v.score, 0) / Object.keys(validations).length;\n    \n    return {\n      validations,\n      score: Math.round(totalScore),\n      passed: totalScore >= 80,\n      corrections: this.corrections\n    };\n  }\n\n  process() {\n    try {\n      // Obtener datos del prompt builder\n      const promptData = $items('Ultra Prompt Builder v6')[0].json;\n      const rules = promptData.prompts.validationRules;\n      \n      // Obtener contenidos de ambos LLMs\n      const openaiContent = this.getContent('OpenAI Writer');\n      const anthropicContent = this.getContent('Anthropic Writer');\n      \n      // Validar ambos contenidos\n      const openaiValidation = this.validateContent(openaiContent, {\n        ...rules,\n        wordCount: promptData.intake.wordCount\n      });\n      \n      const anthropicValidation = this.validateContent(anthropicContent, {\n        ...rules,\n        wordCount: promptData.intake.wordCount\n      });\n      \n      // Seleccionar el mejor contenido\n      const bestContent = openaiValidation.score >= anthropicValidation.score ? \n        { content: openaiContent, source: 'openai', validation: openaiValidation } :\n        { content: anthropicContent, source: 'anthropic', validation: anthropicValidation };\n      \n      // Preparar datos para el optimizer final\n      return [{\n        json: {\n          bestContent,\n          openai: {\n            content: openaiContent,\n            validation: openaiValidation\n          },\n          anthropic: {\n            content: anthropicContent,\n            validation: anthropicValidation\n          },\n          needsOptimization: !bestContent.validation.passed,\n          criticalCorrections: bestContent.validation.corrections.filter(c => c.critical),\n          allCorrections: bestContent.validation.corrections,\n          promptData\n        }\n      }];\n      \n    } catch (error) {\n      return [{\n        json: {\n          error: error.message,\n          stack: error.stack\n        }\n      }];\n    }\n  }\n}\n\nconst validator = new ValidatorProcessor();\nreturn validator.process();"
+      },
+      "id": "9eec83e6-6f8f-4b8f-9a2a-94478e369acd",
+      "name": "Validator Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-3-5-sonnet-20241022",
+          "mode": "list"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Eres el editor final y optimizador de contenido de Finhabits. Tu trabajo es CORREGIR y PERFECCIONAR el contenido basado en las validaciones fallidas.\n\n🔴 CORRECCIONES CRÍTICAS REQUERIDAS:\n{{ $json.criticalCorrections.map(c => `\\n- ${c.issue}: ${c.correction}`).join('') }}\n\n⚠️ OTRAS CORRECCIONES NECESARIAS:\n{{ $json.allCorrections.filter(c => !c.critical).map(c => `\\n- ${c.issue}: ${c.correction}`).join('') }}\n\n📊 VALIDACIONES FALLIDAS:\n{{ Object.entries($json.bestContent.validation.validations).filter(([k,v]) => v.score === 0).map(([k,v]) => `\\n- ${k}: FAILED`).join('') }}\n\nCONTENIDO A OPTIMIZAR:\n{{ $json.bestContent.content }}\n\n========================================\nINSTRUCCIONES DE CORRECCIÓN\n========================================\n\n1. FECHAS: Cambia TODAS las fechas anteriores a 2025 por \"2025\" o \"2026\"\n2. EJEMPLOS: Agrega \"Imaginemos a\" antes de CADA nombre de persona\n3. HERRAMIENTAS: Reemplaza CUALQUIER mención de competidores por:\n   - Emma (análisis financiero)\n   - App de Finhabits\n   - Calculadora de jubilación de Finhabits\n   - Canal de YouTube de Finhabits\n4. LENGUAJE: Cambia \"indocumentado\" por \"personas con ITIN\"\n5. ENLACES: Agrega enlaces a: {{ $json.promptData.brandContext.seo.pillars.join(', ') }}\n6. PROMOCIÓN: Menciona Emma y herramientas Finhabits en cada sección\n7. ESTRUCTURA: Asegura que tiene todas las secciones requeridas\n\nDEVUELVE EL ARTÍCULO COMPLETAMENTE CORREGIDO EN MARKDOWN."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "topP": 0.9
+        }
+      },
+      "id": "6f703872-a134-49a1-89c1-de7a886f7245",
+      "name": "Final Optimizer LLM",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        672,
+        224
+      ],
+      "credentials": {
+        "anthropicApi": {
+          "id": "itYBJ05HDtpuv6eO",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================\n// FINAL OUTPUT PROCESSOR - VALIDACIÓN Y PREPARACIÓN FINAL\n// ========================================================\n\nclass FinalOutputProcessor {\n  \n  extractContent(source) {\n    try {\n      const data = $items(source)[0].json;\n      return data.output || data.text || data.content || '';\n    } catch (e) {\n      // Si el optimizer no corrió, usar el mejor contenido original\n      try {\n        const validatorData = $items('Validator Processor')[0].json;\n        return validatorData.bestContent.content;\n      } catch (e2) {\n        throw new Error('No se pudo obtener contenido final');\n      }\n    }\n  }\n  \n  finalValidation(content) {\n    const checks = {\n      no2024Data: !(content.match(/\\b2024\\b/g) || []).length,\n      fictionalClear: !content.match(/(?:María|Carlos|José)(?!.*[Ii]magin)/g),\n      noCompetitors: !['Vanguard', 'Fidelity', 'Schwab'].some(c => content.includes(c)),\n      hasEmma: content.includes('Emma'),\n      hasFinhabits: content.includes('Finhabits'),\n      hasDisclaimer: content.includes('asesoría financiera'),\n      minLength: content.split(/\\s+/).length >= 2500\n    };\n    \n    const score = Object.values(checks).filter(Boolean).length / Object.keys(checks).length * 100;\n    \n    return {\n      score: Math.round(score),\n      passed: score >= 85,\n      checks\n    };\n  }\n  \n  process() {\n    try {\n      // Obtener contenido final optimizado\n      const finalContent = this.extractContent('Final Optimizer LLM');\n      \n      // Validación final\n      const validation = this.finalValidation(finalContent);\n      \n      // Extraer metadata\n      const title = (finalContent.match(/^#\\s+(.+)/m) || ['', 'Artículo Finhabits'])[1];\n      const wordCount = finalContent.split(/\\s+/).length;\n      \n      // Obtener datos originales\n      const validatorData = $items('Validator Processor')[0].json;\n      const promptData = validatorData.promptData;\n      \n      return [{\n        json: {\n          success: true,\n          content: {\n            body: finalContent,\n            title: title,\n            slug: promptData.intake.suggestedSlug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),\n            wordCount: wordCount\n          },\n          validation: {\n            final: validation,\n            original: validatorData.bestContent.validation,\n            improved: validation.score > validatorData.bestContent.validation.score\n          },\n          metadata: {\n            version: '6.0',\n            timestamp: new Date().toISOString(),\n            usedExternalArticle: Boolean(promptData.brandContext.externalArticleAnalysis),\n            correctionsApplied: validatorData.allCorrections.length,\n            llmsUsed: ['openai', 'anthropic', 'claude-optimizer']\n          },\n          quality: {\n            status: validation.passed ? 'APPROVED' : 'NEEDS_REVIEW',\n            score: validation.score,\n            message: validation.passed ? \n              'Contenido aprobado y listo para publicación' : \n              'Contenido requiere revisión manual adicional'\n          }\n        }\n      }];\n      \n    } catch (error) {\n      return [{\n        json: {\n          success: false,\n          error: error.message\n        }\n      }];\n    }\n  }\n}\n\nconst processor = new FinalOutputProcessor();\nreturn processor.process();"
+      },
+      "id": "cbc475e4-29a0-44e4-9bd6-e1a56256574c",
+      "name": "Final Output Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{\n  $json.content?.[0]?.text\n  || $json.output_text\n  || $json.text\n  || ''\n}}",
+        "name": "=Prueba",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1bVEZ5FDQGbHWFmhsYHpk9KcA9T4iZY36",
+          "mode": "list",
+          "cachedResultName": "Framework Output",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1bVEZ5FDQGbHWFmhsYHpk9KcA9T4iZY36"
+        },
+        "options": {
+          "convertToGoogleDocument": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        224
+      ],
+      "id": "d7f6b284-b42e-4e1e-98e1-30bdfa3fcf73",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "y3TnVWBwkeWBly9a",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 7,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -272,
+        96
+      ],
+      "id": "9ba794ea-ee13-4252-b456-0dcc418b324c",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        400,
+        224
+      ],
+      "id": "33a5140b-3a6b-4bf1-a689-a7bdf0ac4b9c",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1296,
+        224
+      ],
+      "id": "70f7545a-aa72-4064-98c7-fe6f69b9b84d",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Entry": {
+      "main": [
+        [
+          {
+            "node": "Load External Article",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load Brand Base",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load FAQs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load Interactions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load All Blogs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load All Videos",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load Blog/Video Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load External Article": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Brand Base": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Load FAQs": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Load Interactions": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Load All Blogs": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Load All Videos": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Load Blog/Video Map": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Quantum Orchestrator v6": {
+      "main": [
+        [
+          {
+            "node": "Ultra Prompt Builder v6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ultra Prompt Builder v6": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Writer",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Anthropic Writer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Writer": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Writer": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Validator Processor": {
+      "main": [
+        [
+          {
+            "node": "Final Optimizer LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Optimizer LLM": {
+      "main": [
+        [
+          {
+            "node": "Final Output Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Output Processor": {
+      "main": [
+        [
+          {
+            "node": "Create file from text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Quantum Orchestrator v6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Validator Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create file from text": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "cbcae6de-e4d5-4333-b324-d81d33c80113",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "97b76f4897ae349f34c00a42776436e79b8582a640b6e7290db273b4678dacba"
+  },
+  "id": "cczsh4t1CLQzRfzK",
+  "tags": []
+}
